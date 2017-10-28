@@ -14,12 +14,17 @@ package('java-1.8.0-openjdk.x86_64') do
   action :install
 end
 
+package('iproute') do
+  action :install
+end
+
 template('/var/www/html/index.html') do
   action :create
   source 'index.html.erb'
   variables ({
     author: node['page']['author'],
-    ip: '1.2.3.4'
+    ip: node['ipaddress'],
+    name: node['hostname']
   })
 end
 

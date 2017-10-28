@@ -23,7 +23,7 @@ describe file('/var/www/html/index.html') do
   its('content') { should match /Authored by Jane Doe/ }
 end
 
-describe command('curl http://localhost:8080') do
+describe command("curl http://localhost:8080") do
   its('stdout') { should match /Hello world!/ }
   its('stdout') { should match /Authored by Jane Doe/ }
   its('stdout') { should match /My IP Address is / }
