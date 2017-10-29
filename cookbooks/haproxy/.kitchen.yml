@@ -18,15 +18,25 @@ platforms:
   - name: centos-7.3
     driver_config:
       run_command: /sbin/init
-      forward: 8081:8081
     
 suites:
-  - name: default
+  - name: haproxy
     driver:
       run_options: --network=testnet --ip=10.1.1.3
+      forward: 5050:5050
     run_list:
       - recipe[haproxy::default]
     verifier:
       inspec_tests:
         - test/smoke/default
     attributes:
+  - name: apache
+    driver:
+      run_options: --network=testnet --ip=10.1.1.5
+    run_list:
+      - recipe[apache::default]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+    attributes:
+
