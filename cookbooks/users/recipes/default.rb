@@ -5,7 +5,7 @@
 # Copyright:: 2017, Student Name, All Rights Reserved.
 
 current_time = Time.now
-if (current_time.hour >= 9) and (current_time.hour <= 18)
+if (current_time.hour >= 9) and (current_time.hour <= 15)
   ::File.new('/tmp/usersallowed', 'w+')
 else
   if(::File.exist?('/tmp/usersallowed'))
@@ -42,5 +42,5 @@ end
 
 file('/tmp/timestamp') do
   action :nothing
-  content "#{current_time}"
+  content lazy { "#{Time.now}" }
 end
